@@ -2,6 +2,8 @@ package com.idormy.sms.forwarder.utils
 
 import android.app.ActivityManager
 import android.content.Context
+import android.util.Log
+import com.idormy.sms.forwarder.App
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
@@ -34,6 +36,7 @@ class FrpcUtils private constructor() {
         }
 
         fun getStringFromRaw(context: Context, rawName: Int): Observable<String?> {
+            Log.d(App.TAG, "读取内网穿透内容");
             return Observable.create { emitter: ObservableEmitter<String?> ->
                 val reader = BufferedReader(InputStreamReader(context.resources.openRawResource(rawName)))
                 var line: String?

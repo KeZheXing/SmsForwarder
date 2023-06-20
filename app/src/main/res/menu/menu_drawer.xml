@@ -38,22 +38,10 @@
             android:title="@string/menu_server" />
 
         <item
-            android:id="@+id/nav_client"
-            android:checkable="false"
-            android:icon="@drawable/ic_menu_client"
-            android:title="@string/menu_client" />
-
-        <item
             android:id="@+id/nav_frpc"
             android:checkable="false"
             android:icon="@drawable/ic_menu_frpc"
             android:title="@string/menu_frpc" />
-
-        <item
-            android:id="@+id/nav_app_list"
-            android:checkable="false"
-            android:icon="@drawable/ic_menu_app"
-            android:title="@string/menu_apps" />
 
         <item
             android:id="@+id/nav_logcat"
@@ -65,20 +53,7 @@
 
     <group
         android:id="@+id/setting"
-        android:checkableBehavior="none">
-
-        <item
-            android:id="@+id/nav_help"
-            android:checkable="false"
-            android:icon="@drawable/ic_menu_help"
-            android:title="@string/menu_help" />
-
-        <item
-            android:id="@+id/nav_about"
-            android:checkable="false"
-            android:icon="@drawable/ic_menu_about"
-            android:title="@string/menu_about" />
-    </group>
+        android:checkableBehavior="none"/>
 
 
 </menu>

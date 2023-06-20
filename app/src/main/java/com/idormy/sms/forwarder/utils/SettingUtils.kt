@@ -13,7 +13,7 @@ class SettingUtils private constructor() {
         var isAgreePrivacy: Boolean by SharedPreference(IS_AGREE_PRIVACY_KEY, false)
 
         //是否转发短信
-        var enableSms: Boolean by SharedPreference(SP_ENABLE_SMS, false)
+        var enableSms: Boolean by SharedPreference(SP_ENABLE_SMS, true)
 
         //是否转发通话
         var enablePhone: Boolean by SharedPreference(SP_ENABLE_PHONE, false)
@@ -134,19 +134,19 @@ class SettingUtils private constructor() {
         var subidSim1: Int by SharedPreference(SP_SUBID_SIM1, 0)
 
         //SM2主键
-        var subidSim2: Int by SharedPreference(SP_SUBID_SIM2, 0)
+        var subidSim2: Int by SharedPreference(SP_SUBID_SIM2, 1)
 
         //SM1备注
-        var extraSim1: String by SharedPreference(SP_EXTRA_SIM1, "")
+        var extraSim1: String by SharedPreference(SP_EXTRA_SIM1, "s1")
 
         //SM2备注
-        var extraSim2: String by SharedPreference(SP_EXTRA_SIM2, "")
+        var extraSim2: String by SharedPreference(SP_EXTRA_SIM2, "s2")
 
         //是否启用自定义模板
-        var enableSmsTemplate: Boolean by SharedPreference(SP_ENABLE_SMS_TEMPLATE, false)
+        var enableSmsTemplate: Boolean by SharedPreference(SP_ENABLE_SMS_TEMPLATE, true)
 
         //自定义模板
-        var smsTemplate: String by SharedPreference(SP_SMS_TEMPLATE, "")
+        var smsTemplate: String by SharedPreference(SP_SMS_TEMPLATE, "{{设备名称}}_+_{{来源号码}}_+_{{卡槽信息}}_+_{{短信内容}}")
 
         //是否显示页面帮助
         var enableHelpTip: Boolean by SharedPreference(SP_ENABLE_HELP_TIP, false)

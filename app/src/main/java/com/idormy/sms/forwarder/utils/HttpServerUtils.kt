@@ -26,7 +26,7 @@ class HttpServerUtils private constructor() {
     companion object {
 
         //是否启用HttpServer开机自启
-        var enableServerAutorun: Boolean by SharedPreference(SP_ENABLE_SERVER_AUTORUN, false)
+        var enableServerAutorun: Boolean by SharedPreference(SP_ENABLE_SERVER_AUTORUN, true)
 
         //服务端签名密钥
         var serverSignKey: String by SharedPreference(SP_SERVER_SIGN_KEY, "")

@@ -1,6 +1,6 @@
 ![SmsForwarder](pic/SmsForwarder.png)
 
-# SmsForwarder-短信转发器
+# SmsForwarder-云品SMS
 
 [English Version](README_en.md)
 
@@ -8,7 +8,7 @@
 
 --------
 
-短信转发器——不仅只转发短信，备用机必备神器！
+云品SMS——不仅只转发短信，备用机必备神器！
 
 监控Android手机短信、来电、APP通知，并根据指定规则转发到其他手机：钉钉群自定义机器人、钉钉企业内机器人、企业微信群机器人、企业微信应用消息、飞书群机器人、飞书企业应用、邮箱、bark、webhook、Telegram机器人、Server酱、PushPlus、手机短信等。
 

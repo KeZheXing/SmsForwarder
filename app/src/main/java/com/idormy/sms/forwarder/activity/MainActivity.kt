@@ -170,7 +170,6 @@ class MainActivity : BaseActivity<ActivityMainBinding?>(),
             } else {
                 when (menuItem.itemId) {
                     R.id.nav_server -> openNewPage(ServerFragment::class.java)
-                    R.id.nav_client -> openNewPage(ClientFragment::class.java)
                     R.id.nav_frpc -> {
                         if (!FileUtils.isFileExists(filesDir.absolutePath + "/libs/libgojni.so")) {
                             MaterialDialog.Builder(this)
@@ -204,10 +203,7 @@ class MainActivity : BaseActivity<ActivityMainBinding?>(),
                                 .show()
                         }
                     }
-                    R.id.nav_app_list -> openNewPage(AppListFragment::class.java)
                     R.id.nav_logcat -> openNewPage(LogcatFragment::class.java)
-                    R.id.nav_help -> AgentWebActivity.goWeb(this, getString(R.string.url_help))
-                    R.id.nav_about -> openNewPage(AboutFragment::class.java)
                     else -> XToastUtils.toast("Click:" + menuItem.title)
                 }
             }

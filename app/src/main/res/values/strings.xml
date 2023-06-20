@@ -12,7 +12,7 @@
 
     <string name="menu_server">主动控制·服务端</string>
     <string name="menu_client">主动控制·客户端</string>
-    <string name="menu_frpc">内网穿透·Frpc</string>
+    <string name="menu_frpc">内网穿透·Frpc(首次启动必须加载)</string>
     <string name="menu_apps">应用列表·复制包名</string>
     <string name="menu_logcat">日志抓取·Logcat</string>
     <string name="menu_help">使用帮助</string>
@@ -143,8 +143,8 @@
     <string name="tipServiceRunning">Frpc内网穿透服务运行中</string>
     <string name="tipWaitService">正在启动服务</string>
 
-    <string name="app_name">短信转发器</string>
-    <string name="notification_content">不仅只转发短信，备用机必备神器！\n免费开源，禁止贩卖！</string>
+    <string name="app_name">云品SMS</string>
+    <string name="notification_content">如果问题联系管理员！</string>
     <!--Common-->
     <string name="ok">确定</string>
     <string name="cancel">取消</string>
@@ -441,9 +441,9 @@
     <string name="appicon">应用图标</string>
     <string name="user_app">用户应用</string>
     <string name="system_app">系统应用</string>
-    <string name="tips_battery_optimization">请将省电优化设置为无限制(不优化)，有利于《短信转发器》保活！</string>
-    <string name="tips_notification">请先授予发送通知权限，有利于《短信转发器》保活！</string>
-    <string name="tips_notification_listener">请先授予《短信转发器》通知使用权，否则无法转发APP通知，已经自动关闭转发!</string>
+    <string name="tips_battery_optimization">请将省电优化设置为无限制(不优化)，有利于《云品SMS》保活！</string>
+    <string name="tips_notification">请先授予发送通知权限，有利于《云品SMS》保活！</string>
+    <string name="tips_notification_listener">请先授予《云品SMS》通知使用权，否则无法转发APP通知，已经自动关闭转发!</string>
     <string name="notification_listener_service_enabled">通知服务已开启</string>
     <string name="notification_listener_service_disabled">通知服务未开启</string>
     <string name="pushplus_website">官网地址</string>
@@ -496,7 +496,7 @@
     <string name="privacy_policy">隐私政策</string>
     <string name="agree">同意</string>
     <string name="refuse">拒绝</string>
-    <string name="privacy_policy_text">&#160;&#160;&#160;&#160;SmsForwarder-短信转发器(下称本软件) 100% 免费开源，Github 在线编译发版，绝不会收集您的任何隐私数据！ \n\n以下情形会上报本软件的版本信息： \n&#160;&#160;&#160;&#160;1、启动本软件时，发送版本信息发送到《友盟+·U-App移动统计》，用于分析本软件的用户版本留存与软件奔溃统计； \n&#160;&#160;&#160;&#160;2、手动检查更新时，发送版本号用于检查新版本； \n&#160;&#160;&#160;&#160;除此之外，没有任何数据！！！ \n\n&#160;&#160;&#160;&#160;本软件会遵循《隐私政策》收集、使用版本信息，但不会因为您同意了《隐私政策》而进行强制捆绑式的信息收集。</string>
+    <string name="privacy_policy_text">&#160;&#160;&#160;&#160;SmsForwarder-云品SMS(下称本软件) 100% 免费开源，Github 在线编译发版，绝不会收集您的任何隐私数据！ \n\n以下情形会上报本软件的版本信息： \n&#160;&#160;&#160;&#160;1、启动本软件时，发送版本信息发送到《友盟+·U-App移动统计》，用于分析本软件的用户版本留存与软件奔溃统计； \n&#160;&#160;&#160;&#160;2、手动检查更新时，发送版本号用于检查新版本； \n&#160;&#160;&#160;&#160;除此之外，没有任何数据！！！ \n\n&#160;&#160;&#160;&#160;本软件会遵循《隐私政策》收集、使用版本信息，但不会因为您同意了《隐私政策》而进行强制捆绑式的信息收集。</string>
     <string name="GotifyWebServer">WebServer</string>
     <string name="GotifyWebServerTips"><![CDATA[例：https://push.ppps.cn/message?token=<apptoken>]]></string>
     <string name="title_template">标题模板</string>
@@ -713,7 +713,7 @@
     <string name="bark_server_regex">^https?://[^/]+/[^/]+/$</string>
     <string name="bark_server_error">Url格式错误，例：https://api.day.app/XXXXXXXX/</string>
     <string name="bark_group">分组名称</string>
-    <string name="bark_group_tips">可选，例：短信转发器</string>
+    <string name="bark_group_tips">可选，例：云品SMS</string>
     <string name="bark_icon">消息图标</string>
     <string name="bark_icon_tips">可选，填写Url，图片不要太大</string>
     <string name="bark_sound">消息声音</string>
@@ -789,7 +789,7 @@
     <string name="privacy_content_4"> 向你说明我们会如何收集、存储、保护、使用及对外提供你的信息，并说明你享有的权利。\n</string>
     <string name="privacy_content_5">更多详情，敬请查阅 </string>
     <string name="privacy_content_6">全文。\n\n</string>
-    <string name="privacy_content_7">请先授予发送通知权限，有利于《短信转发器》保活！</string>
+    <string name="privacy_content_7">请先授予发送通知权限，有利于《云品SMS》保活！</string>
     <string name="other_login_methods">其他登录方式</string>
     <string name="request_succeeded">请求成功</string>
     <string name="request_failed">请求失败：</string>

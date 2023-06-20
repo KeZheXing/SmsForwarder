@@ -5,10 +5,17 @@ import android.content.Intent
 import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.work.Configuration
+import com.google.gson.Gson
 import com.idormy.sms.forwarder.App
 import com.idormy.sms.forwarder.BuildConfig
+import com.idormy.sms.forwarder.R
+import com.idormy.sms.forwarder.database.entity.Sender
 import com.idormy.sms.forwarder.database.repository.*
+import com.idormy.sms.forwarder.entity.setting.WebhookSetting
 import com.idormy.sms.forwarder.service.ForegroundService
+import com.idormy.sms.forwarder.utils.TYPE_WEBHOOK
+import com.idormy.sms.forwarder.utils.XToastUtils
+import com.xuexiang.xui.utils.ResUtils
 import kotlinx.coroutines.launch
 
 @Suppress("unused")

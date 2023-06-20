@@ -12,7 +12,6 @@ def keyPropsFile = rootProject.file('keystore/keystore.properties')
 if (keyPropsFile.exists()) {
     keyProps.load(new FileInputStream(keyPropsFile))
 }
-
 //打包时，记得设置true启用
 if (isNeedPackage.toBoolean() && isUseBooster.toBoolean()) {
     apply plugin: 'com.didiglobal.booster'
