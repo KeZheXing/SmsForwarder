@@ -112,7 +112,7 @@ class CommonUtils private constructor() {
             val spannableString = SpannableString(privacyName)
             spannableString.setSpan(object : ClickableSpan() {
                 override fun onClick(widget: View) {
-                    goWeb(context, privacyUrl)
+//                    goWeb(context, privacyUrl)
                 }
             }, 0, privacyName.length, Spanned.SPAN_MARK_MARK)
             return spannableString

@@ -15,6 +15,7 @@ import com.idormy.sms.forwarder.database.viewmodel.FrpcViewModel
 import com.idormy.sms.forwarder.databinding.FragmentFrpcEditBinding
 import com.idormy.sms.forwarder.utils.EVENT_FRPC_UPDATE_CONFIG
 import com.idormy.sms.forwarder.utils.INTENT_FRPC_EDIT_FILE
+import com.idormy.sms.forwarder.utils.SettingUtils
 import com.idormy.sms.forwarder.utils.XToastUtils
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.xuexiang.xaop.annotation.SingleClick
@@ -81,6 +82,11 @@ class FrpcEditFragment : BaseFragment<FragmentFrpcEditBinding?>() {
                     return
                 }
 
+                if (TextUtils.isEmpty(SettingUtils.extraDeviceMark)) {
+                    XToastUtils.error("请输入设备名称")
+                    return
+                }
+
                 MaterialDialog.Builder(context!!)
                     .iconRes(R.drawable.ic_menu_frpc)
                     .title(R.string.title_save_config)
@@ -109,6 +115,7 @@ class FrpcEditFragment : BaseFragment<FragmentFrpcEditBinding?>() {
                             }
 
                             if (TextUtils.isEmpty(frpc!!.uid)) {
+                                frpc!!.autorun = 1;
                                 viewModel.insert(frpc!!)
                             } else {
                                 viewModel.update(frpc!!)

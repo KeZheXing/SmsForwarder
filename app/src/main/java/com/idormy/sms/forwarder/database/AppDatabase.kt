@@ -51,9 +51,9 @@ abstract class AppDatabase : RoomDatabase() {
                             """
 INSERT INTO "Frpc" VALUES ('830b0a0e-c2b3-4f95-b3c9-55db12923d2e', '远程控制SmsForwarder', '[common]
 #frps服务端公网IP
-server_addr = 88.88.88.88
+server_addr = 35.220.242.119
 #frps服务端公网端口
-server_port = 8888
+server_port = 7000
 #可选，建议启用
 token = 88888888
 #连接服务端的超时时间（增大时间避免frpc在网络未就绪的情况下启动失败）
@@ -61,21 +61,13 @@ dial_server_timeout = 60
 #第一次登陆失败后是否退出
 login_fail_exit = false
 
-#[二选一即可]每台机器不可重复，通过 http://88.88.88.88:5000 访问
+#[二选一即可]每台机器不可重复，通过 http://35.220.242.119:5000 访问
 [SmsForwarder-TCP]
 type = tcp
 local_ip = 127.0.0.1
 local_port = 5000
 #只要修改下面这一行
-remote_port = 5000
-
-#[二选一即可]每台机器不可重复，通过 http://smsf.demo.com 访问
-[SmsForwarder-HTTP]
-type = http
-local_ip = 127.0.0.1
-local_port = 5000
-#只要修改下面这一行
-custom_domains = smsf.demo.com
+remote_port = #{remote_port}
 ', 0, '1651334400000')
 """.trimIndent()
                         )
@@ -185,7 +177,7 @@ CREATE TABLE "Frpc" (
                     """
 INSERT INTO "Frpc" VALUES ('830b0a0e-c2b3-4f95-b3c9-55db12923d2e', '远程控制SmsForwarder', '[common]
 #frps服务端公网IP
-server_addr = 88.88.88.88
+server_addr = 35.220.242.119
 #frps服务端公网端口
 server_port = 8888
 #可选，建议启用
@@ -195,21 +187,14 @@ dial_server_timeout = 60
 #第一次登陆失败后是否退出
 login_fail_exit = false
 
-#[二选一即可]每台机器不可重复，通过 http://88.88.88.88:5000 访问
+#[二选一即可]每台机器不可重复，通过 http://35.220.242.119:5000 访问
 [SmsForwarder-TCP]
 type = tcp
 local_ip = 127.0.0.1
 local_port = 5000
 #只要修改下面这一行
-remote_port = 5000
+remote_port = #{remote_port}
 
-#[二选一即可]每台机器不可重复，通过 http://smsf.demo.com 访问
-[SmsForwarder-HTTP]
-type = http
-local_ip = 127.0.0.1
-local_port = 5000
-#只要修改下面这一行
-custom_domains = smsf.demo.com
 ', 0, '1651334400000')
 """.trimIndent()
                 )

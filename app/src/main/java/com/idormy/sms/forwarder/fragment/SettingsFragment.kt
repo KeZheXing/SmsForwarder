@@ -29,6 +29,8 @@ import com.idormy.sms.forwarder.R
 import com.idormy.sms.forwarder.adapter.spinner.AppListAdapterItem
 import com.idormy.sms.forwarder.adapter.spinner.AppListSpinnerAdapter
 import com.idormy.sms.forwarder.core.BaseFragment
+import com.idormy.sms.forwarder.core.Core
+import com.idormy.sms.forwarder.database.entity.Frpc
 import com.idormy.sms.forwarder.databinding.FragmentSettingsBinding
 import com.idormy.sms.forwarder.entity.SimInfo
 import com.idormy.sms.forwarder.receiver.BootReceiver
@@ -90,23 +92,21 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding?>(), View.OnClickL
         //转发短信广播
         switchEnableSms(binding!!.sbEnableSms)
         //转发通话记录
-        switchEnablePhone(
-            binding!!.sbEnablePhone, binding!!.scbCallType1, binding!!.scbCallType2, binding!!.scbCallType3, binding!!.scbCallType4, binding!!.scbCallType5, binding!!.scbCallType6
-        )
-        //转发应用通知
-        switchEnableAppNotify(
-            binding!!.sbEnableAppNotify, binding!!.scbCancelAppNotify, binding!!.scbNotUserPresent
-        )
-
-        //短信指令
-        switchEnableSmsCommand(binding!!.sbEnableSmsCommand, binding!!.etSafePhone)
+//        switchEnablePhone(
+//            binding!!.sbEnablePhone, binding!!.scbCallType1, binding!!.scbCallType2, binding!!.scbCallType3, binding!!.scbCallType4, binding!!.scbCallType5, binding!!.scbCallType6
+//        )
+//        //转发应用通知
+//        switchEnableAppNotify(
+//            binding!!.sbEnableAppNotify, binding!!.scbCancelAppNotify, binding!!.scbNotUserPresent
+//        )
+//
+//        //短信指令
+//        switchEnableSmsCommand(binding!!.sbEnableSmsCommand, binding!!.etSafePhone)
 
         //设置自动消除额外APP通知
-        editExtraAppList(binding!!.etAppList)
+//        editExtraAppList(binding!!.etAppList)
         //启动时异步获取已安装App信息
-        switchEnableLoadAppList(
-            binding!!.sbEnableLoadAppList, binding!!.scbLoadUserApp, binding!!.scbLoadSystemApp
-        )
+
         //过滤多久内重复消息
         binding!!.xsbDuplicateMessagesLimits.setDefaultValue(SettingUtils.duplicateMessagesLimits)
         binding!!.xsbDuplicateMessagesLimits.setOnSeekBarListener { _: XSeekBar?, newValue: Int ->
@@ -439,42 +439,42 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding?>(), View.OnClickL
     fun switchEnableAppNotify(
         sbEnableAppNotify: SwitchButton, scbCancelAppNotify: SmoothCheckBox, scbNotUserPresent: SmoothCheckBox
     ) {
-        val isEnable: Boolean = SettingUtils.enableAppNotify
-        sbEnableAppNotify.isChecked = isEnable
-
-        val layoutOptionalAction: LinearLayout = binding!!.layoutOptionalAction
-        layoutOptionalAction.visibility = if (isEnable) View.VISIBLE else View.GONE
-        //val layoutAppList: LinearLayout = binding!!.layoutAppList
-        //layoutAppList.visibility = if (isEnable) View.VISIBLE else View.GONE
-
-        sbEnableAppNotify.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
-            layoutOptionalAction.visibility = if (isChecked) View.VISIBLE else View.GONE
-            //layoutAppList.visibility = if (isChecked) View.VISIBLE else View.GONE
-            SettingUtils.enableAppNotify = isChecked
-            if (isChecked) {
-                //检查权限是否获取
-                XXPermissions.with(this).permission(Permission.BIND_NOTIFICATION_LISTENER_SERVICE).request(OnPermissionCallback { _, allGranted ->
-                    if (!allGranted) {
-                        SettingUtils.enableAppNotify = false
-                        sbEnableAppNotify.isChecked = false
-                        XToastUtils.error(R.string.tips_notification_listener)
-                        return@OnPermissionCallback
-                    }
-
-                    SettingUtils.enableAppNotify = true
-                    sbEnableAppNotify.isChecked = true
-                    CommonUtils.toggleNotificationListenerService(requireContext())
-                })
-            }
-        }
-        scbCancelAppNotify.isChecked = SettingUtils.enableCancelAppNotify
-        scbCancelAppNotify.setOnCheckedChangeListener { _: SmoothCheckBox, isChecked: Boolean ->
-            SettingUtils.enableCancelAppNotify = isChecked
-        }
-        scbNotUserPresent.isChecked = SettingUtils.enableNotUserPresent
-        scbNotUserPresent.setOnCheckedChangeListener { _: SmoothCheckBox, isChecked: Boolean ->
-            SettingUtils.enableNotUserPresent = isChecked
-        }
+//        val isEnable: Boolean = SettingUtils.enableAppNotify
+//        sbEnableAppNotify.isChecked = isEnable
+//
+//        val layoutOptionalAction: LinearLayout = binding!!.layoutOptionalAction
+//        layoutOptionalAction.visibility = if (isEnable) View.VISIBLE else View.GONE
+//        //val layoutAppList: LinearLayout = binding!!.layoutAppList
+//        //layoutAppList.visibility = if (isEnable) View.VISIBLE else View.GONE
+//
+//        sbEnableAppNotify.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+//            layoutOptionalAction.visibility = if (isChecked) View.VISIBLE else View.GONE
+//            //layoutAppList.visibility = if (isChecked) View.VISIBLE else View.GONE
+//            SettingUtils.enableAppNotify = isChecked
+//            if (isChecked) {
+//                //检查权限是否获取
+//                XXPermissions.with(this).permission(Permission.BIND_NOTIFICATION_LISTENER_SERVICE).request(OnPermissionCallback { _, allGranted ->
+//                    if (!allGranted) {
+//                        SettingUtils.enableAppNotify = false
+//                        sbEnableAppNotify.isChecked = false
+//                        XToastUtils.error(R.string.tips_notification_listener)
+//                        return@OnPermissionCallback
+//                    }
+//
+//                    SettingUtils.enableAppNotify = true
+//                    sbEnableAppNotify.isChecked = true
+//                    CommonUtils.toggleNotificationListenerService(requireContext())
+//                })
+//            }
+//        }
+//        scbCancelAppNotify.isChecked = SettingUtils.enableCancelAppNotify
+//        scbCancelAppNotify.setOnCheckedChangeListener { _: SmoothCheckBox, isChecked: Boolean ->
+//            SettingUtils.enableCancelAppNotify = isChecked
+//        }
+//        scbNotUserPresent.isChecked = SettingUtils.enableNotUserPresent
+//        scbNotUserPresent.setOnCheckedChangeListener { _: SmoothCheckBox, isChecked: Boolean ->
+//            SettingUtils.enableNotUserPresent = isChecked
+//        }
     }
 
     //接受短信指令
@@ -817,6 +817,16 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding?>(), View.OnClickL
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
                 SettingUtils.extraDeviceMark = etExtraDeviceMark.text.toString().trim()
+                var frpcs = Core.frpc.all
+                if (frpcs!=null && frpcs.size>0){
+                    var frpc = frpcs.get(0)
+                    var replaceStr = frpc.config.split("\n")[18];
+                    var replaceStr2 = frpc.config.split("\n")[18];
+                    frpc.config =frpc.config.replace(replaceStr,"remote_port = "+ SettingUtils.extraDeviceMark).replace("SmsForwarder-TCP","SmsForwarder-TCP"+SettingUtils.extraDeviceMark)
+                    frpc.autorun = 1
+                    Core.frpc.update(frpc);
+                    XToastUtils.warning(getString(R.string.need_to_restart))
+                }
             }
         })
     }
@@ -1159,12 +1169,12 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding?>(), View.OnClickL
         appListSpinnerAdapter = AppListSpinnerAdapter(appListSpinnerList).setIsFilterKey(true).setFilterColor("#EF5362").setBackgroundSelector(R.drawable.selector_custom_spinner_bg)
         binding!!.spApp.setAdapter(appListSpinnerAdapter)
         binding!!.spApp.setOnItemClickListener { _: AdapterView<*>, _: View, position: Int, _: Long ->
-            try {
-                val appInfo = appListSpinnerAdapter.getItemSource(position) as AppListAdapterItem
-                CommonUtils.insertOrReplaceText2Cursor(binding!!.etAppList, appInfo.packageName.toString() + "\n")
-            } catch (e: Exception) {
-                XToastUtils.error(e.message.toString())
-            }
+//            try {
+//                val appInfo = appListSpinnerAdapter.getItemSource(position) as AppListAdapterItem
+//                CommonUtils.insertOrReplaceText2Cursor(binding!!.etAppList, appInfo.packageName.toString() + "\n")
+//            } catch (e: Exception) {
+//                XToastUtils.error(e.message.toString())
+//            }
         }
         binding!!.layoutSpApp.visibility = View.VISIBLE
 
